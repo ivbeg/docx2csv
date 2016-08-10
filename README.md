@@ -16,6 +16,7 @@ Options:
 ## Examples
 
 docx2csv --format csv --sizefilter 3 CP_CONTRACT_160166.docx
+
 Extracts tables from file CP_CONTRACT_160166.docx with number of rows > 3 and
 saves results as CSV files.
 
