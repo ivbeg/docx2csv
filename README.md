@@ -1,4 +1,4 @@
-
+```
 Usage: docx2csv [OPTIONS] FILENAME
 
   docx to csv convertor (http://github.com/ivbeg/docx2csv)     
@@ -9,10 +9,10 @@ Usage: docx2csv [OPTIONS] FILENAME
 
 Options:
   --format TEXT         Output format: CSV, XLSX
-  --singlefile TEXT     Outputs single XLS file with multiple sheets
+  --singlefile TEXT     Outputs single XLS file with multiple sheets: True or False
   --sizefilter INTEGER  Filters table by size number of rows
   --help                Show this message and exit.
-
+```
 ## Examples
 
 docx2csv --format csv --sizefilter 3 CP_CONTRACT_160166.docx
