@@ -14,10 +14,13 @@ from docx.oxml.text.paragraph import CT_P
 from docx.table import _Cell, Table
 from docx.text.paragraph import Paragraph
 
-def extract_table(table):
+def extract_table(table, verbose=True):
     """Extracts table data from table object"""
     results = []
+    n = 0
     for row in table.rows:
+        n += 1
+        if verbose and n % 100 == 0: print 'Processed %d rows' % n
         r = []
         for cell in row.cells:
             r.append(cell.text.replace(u'\n', u' ').encode('utf8'))
@@ -76,7 +79,7 @@ def cli1():
 def extract(format, sizefilter, singlefile, filename):
     """
         docx to csv convertor (http://github.com/ivbeg/docx2csv)
-        
+
         Extracts tables from DOCX files as CSV or XLSX.
 
         Use command: "docx2csv convert <filename>" to run extraction.
