@@ -14,7 +14,7 @@ from docx.oxml.text.paragraph import CT_P
 from docx.table import _Cell, Table
 from docx.text.paragraph import Paragraph
 
-def extract_table(table, verbose=True):
+def extract_table_old(table, verbose=True):
     """Extracts table data from table object"""
     results = []
     n = 0
@@ -27,6 +27,22 @@ def extract_table(table, verbose=True):
         results.append(r)
     return results
 
+
+def extract_table(table, verbose=True):
+    """Extracts table data from table object"""
+    results = []
+    n = 0
+    nrow = len(table.rows)
+    ncol = len(table.columns)
+    cells = table._cells
+    for rnum in xrange(nrow):
+        n += 1
+        if verbose and n % 100 == 0: print 'Processed %d rows' % n
+        r = []
+        for cnum in xrange(ncol):
+            r.append(cells[cnum + rnum * ncol].text.replace(u'\n', u' ').encode('utf8'))
+        results.append(r)
+    return results
 
 def extract_docx_table(filename):
     """Extracts table from .DOCX files"""

@@ -24,3 +24,7 @@ saves results as CSV files.
 * click https://github.com/pallets/click
 * xlwt https://github.com/python-excel/xlwt
 * python-docx https://github.com/python-openxml/python-docx
+
+
+## Acknowledgements
+Thanks to Vsevolod Oparin (https://www.facebook.com/vsevolod.oparin) for optimized "extract_table" code
