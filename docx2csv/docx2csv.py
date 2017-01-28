@@ -72,7 +72,7 @@ def store_table(tabdata, filename, format='csv'):
         workbook.save(filename)
 
 
-def extract(format, sizefilter, singlefile, filename):
+def extract(filename, format='csv', sizefilter=0, singlefile=False):
     tables = extract_docx_table(filename)
     name = filename.rsplit('.', 1)[0]
     format = format.lower()
