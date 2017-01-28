@@ -4,6 +4,8 @@ import csv
 import xlwt
 
 from docx import Document
+from docx.table import _Cell
+from docx.oxml.simpletypes import ST_Merge
 
 
 def extract_table_old(table, verbose=True):
@@ -24,16 +26,21 @@ def extract_table(table, verbose=True):
     """Extracts table data from table object"""
     results = []
     n = 0
-    nrow = len(table.rows)
-    ncol = len(table.columns)
-    cells = table._cells
-    for rnum in xrange(nrow):
-        n += 1
-        if verbose and n % 100 == 0: print 'Processed %d rows' % n
+    for tr in table._tbl.tr_lst:
         r = []
-        for cnum in xrange(ncol):
-            r.append(cells[cnum + rnum * ncol].text.replace(u'\n', u' ').encode('utf8'))
+        for tc in tr.tc_lst:
+            for grid_span_idx in range(tc.grid_span):
+                if tc.vMerge == ST_Merge.CONTINUE:
+                    r.append(results[n - 1][len(r) - 1])
+                elif grid_span_idx > 0:
+                    r.append(r[-1])
+                else:
+                    cell = _Cell(tc, table)
+                    r.append(cell.text.replace('\n', ' ').encode('utf8'))
         results.append(r)
+        n += 1
+        if verbose and n % 100 == 0:
+            print 'Processed %d rows' % n
     return results
 
 
