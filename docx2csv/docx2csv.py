@@ -1,26 +1,38 @@
-#!/usr/bin/env python
 # -*- coding: utf8 -*-
 
-import click
-
-import os
 import csv
-import sys
 import xlwt
 
 from docx import Document
-from docx.oxml.table import CT_Tbl
-from docx.oxml.text.paragraph import CT_P
-from docx.table import _Cell, Table
-from docx.text.paragraph import Paragraph
 
-def extract_table(table):
+
+def extract_table_old(table, verbose=True):
     """Extracts table data from table object"""
     results = []
+    n = 0
     for row in table.rows:
+        n += 1
+        if verbose and n % 100 == 0: print 'Processed %d rows' % n
         r = []
         for cell in row.cells:
             r.append(cell.text.replace(u'\n', u' ').encode('utf8'))
+        results.append(r)
+    return results
+
+
+def extract_table(table, verbose=True):
+    """Extracts table data from table object"""
+    results = []
+    n = 0
+    nrow = len(table.rows)
+    ncol = len(table.columns)
+    cells = table._cells
+    for rnum in xrange(nrow):
+        n += 1
+        if verbose and n % 100 == 0: print 'Processed %d rows' % n
+        r = []
+        for cnum in xrange(ncol):
+            r.append(cells[cnum + rnum * ncol].text.replace(u'\n', u' ').encode('utf8'))
         results.append(r)
     return results
 
@@ -38,6 +50,7 @@ def extract_docx_table(filename):
         tdata = extract_table(table)
         tables.append(tdata)
     return tables
+
 
 def store_table(tabdata, filename, format='csv'):
     """Saves table data as csv file"""
@@ -59,26 +72,7 @@ def store_table(tabdata, filename, format='csv'):
         workbook.save(filename)
 
 
-@click.group()
-def cli1():
-    """Extracts tables from DOCX files as CSV or XLSX.
-        Use command: "docx2csv convert <filename>" to run extraction.
-        It will create files like filename_1.csv, filename_2.csv for each table found.
-
-    """
-    pass
-
-@cli1.command()
-@click.option('--format', default='csv', help='Output format: CSV, XLSX')
-@click.option('--singlefile', default=False, help='Outputs XLS file with multiple sheets' )
-@click.option('--sizefilter', default=0, help='Filters table by size number of rows')
-@click.argument('filename')
-def extract(format, sizefilter, singlefile, filename):
-    """Extracts tables from DOCX files as CSV or XLSX.
-
-        Use command: "docx2csv convert <filename>" to run extraction.
-        It will create files like filename_1.csv, filename_2.csv for each table found.
-    """
+def extract(filename, format='csv', sizefilter=0, singlefile=False):
     tables = extract_docx_table(filename)
     name = filename.rsplit('.', 1)[0]
     format = format.lower()
@@ -111,9 +105,3 @@ def extract(format, sizefilter, singlefile, filename):
             destname = name + '_%d.%s' % (n, format)
             store_table(t, destname, format)
             print destname, 'saved'
-
-
-#cli = click.CommandCollection(sources=[cli1])
-
-if __name__ == '__main__':
-    extract()
