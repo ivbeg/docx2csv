@@ -37,8 +37,8 @@ We encourage you to add new languages to existing stack.
 Write Documentation
 ~~~~~~~~~~~~~~~~~~~
 
-DateParser could always use more documentation, whether as part of the
-official DateParser docs, in docstrings, or even on the web in blog posts,
+docx2csv could always use more documentation, whether as part of the
+official docx2csv docs, in docstrings, or even on the web in blog posts,
 articles, and such.
 
 Submit Feedback

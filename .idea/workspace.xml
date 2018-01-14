@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="ee1234bf-81b6-4f0e-bbed-4491e0abde01" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/AUTHORS.rst" afterPath="$PROJECT_DIR$/AUTHORS.rst" />
-      <change beforePath="$PROJECT_DIR$/README.rst" afterPath="$PROJECT_DIR$/README.rst" />
-      <change beforePath="$PROJECT_DIR$/docs/usage.rst" afterPath="$PROJECT_DIR$/docs/usage.rst" />
-      <change beforePath="$PROJECT_DIR$/docx2csv/converter.py" afterPath="$PROJECT_DIR$/docx2csv/converter.py" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -53,8 +50,8 @@
       <file leaf-file-name="README.rst" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/README.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1503">
-              <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+            <state relative-caret-position="579">
+              <caret line="31" column="36" lean-forward="false" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -64,7 +61,7 @@
         <entry file="file://$PROJECT_DIR$/docs/usage.rst">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="546">
-              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+              <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -173,7 +170,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../lazyscraper" />
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -353,15 +350,23 @@
     <entry file="file://$PROJECT_DIR$/docs/usage.rst">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="546">
-          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <caret line="19" column="0" lean-forward="false" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../active/gcontactscmd/gcontcmd.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/README.rst">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1503">
-          <caret line="59" column="0" lean-forward="true" selection-start-line="59" selection-start-column="0" selection-end-line="59" selection-end-column="0" />
+        <state relative-caret-position="579">
+          <caret line="31" column="36" lean-forward="false" selection-start-line="31" selection-start-column="36" selection-end-line="31" selection-end-column="36" />
           <folding />
         </state>
       </provider>
