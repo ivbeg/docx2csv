@@ -77,7 +77,7 @@ def extract_tables(filename):
     return tables
 
 
-def extract(filename, format='csv', sizefilter=0, singlefile=False):
+def extract(filename, format='csv', sizefilter=0, singlefile=False, output=None):
     """Extracts tables from csv files and saves them as csv, xls or xlsx files"""
     tables = extract_tables(filename)
     name = filename.rsplit('.', 1)[0]
@@ -92,7 +92,7 @@ def extract(filename, format='csv', sizefilter=0, singlefile=False):
                     continue
                 n += 1
                 ws = __xls_table_to_sheet(t, workbook.add_sheet(str(n)))
-            destname = name + '.%s' % (format)
+            destname = output if output else name + '.%s' % (format)
             workbook.save(destname)
         elif format == 'xlsx':
             workbook = openpyxl.Workbook()
@@ -101,12 +101,12 @@ def extract(filename, format='csv', sizefilter=0, singlefile=False):
                     continue
                 n += 1
                 ws = __xlsx_table_to_sheet(t, workbook.create_sheet(str(n)))
-            destname = name + '.%s' % (format)
+            destname = output if output else name + '.%s' % (format)
             workbook.save(destname)
     else:
         for t in tables:
             if lfilter >= len(t):
                 continue
             n += 1
-            destname = name + '_%d.%s' % (n, format)
+            destname = output if output else name + '.%s' % (format)
             __store_table(t, destname, format)
