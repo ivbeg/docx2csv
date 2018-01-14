@@ -1,7 +1,7 @@
 ```
 Usage: docx2csv [OPTIONS] FILENAME
 
-  docx to csv convertor (http://github.com/ivbeg/docx2csv)     
+  docx to csv convertor (http://github.com/ivbeg/docx2csv)
   Extracts tables from DOCX files as CSV or XLSX.
 
   Use command: "docx2csv convert <filename>" to run extraction. It will
@@ -24,6 +24,7 @@ saves results as CSV files.
 * click https://github.com/pallets/click
 * xlwt https://github.com/python-excel/xlwt
 * python-docx https://github.com/python-openxml/python-docx
+* openpyxl https://bitbucket.org/openpyxl/openpyxl/src
 
 
 ## Acknowledgements

@@ -1,0 +1,25 @@
+
+.. include:: ../README.rst
+.. include:: usage.rst
+
+Documentation
+=============
+
+Contents:
+
+.. toctree::
+   :maxdepth: 2
+
+   installation
+   usage
+   contributing
+   authors
+   history
+
+Indices and tables
+==================
+
+* :ref:`genindex`
+* :ref:`modindex`
+* :ref:`search`
+
