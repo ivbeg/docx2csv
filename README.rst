@@ -26,15 +26,9 @@ saves results as CSV files.
 
 Code
 ====
-Popular Formats
----------------
-.. autoclass:: docx2csv
-   :members: extract, extract_tables
-
-Function 'parse' mimics default behavior of `dateparser <https://github.com/scrapinghub/dateparser>`_ 'parse' function.
-Except that it is part of DateParser class, not standalone function.
 
 
+Function "extract_tables" returns list of tables from docx file and function "extract" extracts tables as xlsx, xls or csv file. If 'csv' file selected you need to specify single file csv or multiple files
     >>> from docx2csv import extract_tables, extract
     >>> tables = extract_tables('some_file.docx')
 
@@ -42,7 +36,8 @@ Except that it is part of DateParser class, not standalone function.
     >>> extract(filename='some_file.docx', format="xlsx", output='some_file.xlsx')
     saves all tables from some_file.docx to some_file.xlsx
 
-
+    >>> extract(filename='some_file.docx', format="csv", singleFile=False)
+    saves all tables from some_file.docx to some_file_1.csv, some_file_2.csv and etc.
 
 
 
