@@ -23,7 +23,7 @@ def __extract_table(table):
                     r.append(r[-1])
                 else:
                     cell = _Cell(tc, table)
-                    r.append(cell.text.replace('\n', ' ').encode('utf8'))
+                    r.append(cell.text.replace('\n', ' '))
         results.append(r)
         n += 1
     return results
@@ -51,7 +51,7 @@ def __xls_table_to_sheet(table, ws):
     for row in table:
         cn = 0
         for c in row:
-            ws.write(rn, cn, c.decode('utf8'))
+            ws.write(rn, cn, c)
             cn += 1
         rn += 1
     return ws
@@ -108,5 +108,5 @@ def extract(filename, format='csv', sizefilter=0, singlefile=False, output=None)
             if lfilter >= len(t):
                 continue
             n += 1
-            destname = output if output else name + '.%s' % (format)
+            destname = output if output else name + '_%d.%s' % (n, format)
             __store_table(t, destname, format)
