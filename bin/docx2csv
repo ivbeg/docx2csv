@@ -17,7 +17,7 @@ def cli1():
 
 
 @cli1.command()
-@click.option('--format', default='csv', help='Output format: CSV, XLSX')
+@click.option('--format', default='csv', help='Output format: CSV, TSV, XLSX')
 @click.option('--singlefile', default=False, help='Outputs XLS file with multiple sheets' )
 @click.option('--sizefilter', default=0, help='Filters table by size number of rows')
 @click.argument('filename')
@@ -25,7 +25,7 @@ def extract(format, sizefilter, singlefile, filename):
     """
         docx to csv convertor (http://github.com/ivbeg/docx2csv)
 
-        Extracts tables from DOCX files as CSV or XLSX.
+        Extracts tables from DOCX files as CSV or TSV or XLSX.
 
         Use command: "docx2csv convert <filename>" to run extraction.
         It will create files like filename_1.csv, filename_2.csv for each table found.
