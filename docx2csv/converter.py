@@ -35,6 +35,11 @@ def __store_table(tabdata, filename, format='csv'):
         w = csv.writer(f, delimiter=',')
         for row in tabdata:
             w.writerow(row)
+    elif format == 'tsv':
+        f = open(filename, 'w')
+        w = csv.writer(f, delimiter='\t')
+        for row in tabdata:
+            w.writerow(row)
     elif format == 'xls':
         workbook = xlwt.Workbook()
         ws = __xls_table_to_sheet(tabdata, workbook.add_sheet('0'))
