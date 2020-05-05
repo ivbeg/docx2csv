@@ -36,7 +36,7 @@ Function "extract_tables" returns list of tables from docx file and function "ex
     >>> extract(filename='some_file.docx', format="xlsx", output='some_file.xlsx')
     saves all tables from some_file.docx to some_file.xlsx
 
-    >>> extract(filename='some_file.docx', format="csv", singleFile=False)
+    >>> extract(filename='some_file.docx', format="csv", singlefile=False)
     saves all tables from some_file.docx to some_file_1.csv, some_file_2.csv and etc.
 
 
