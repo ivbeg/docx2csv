@@ -37,16 +37,12 @@ def __store_table(tabdata, filename, format="csv"):
         w = csv.writer(f, delimiter=",")
         for row in tabdata:
             w.writerow(row)
-<<<<<<< HEAD
-    elif format == "xls":
-=======
     elif format == 'tsv':
         f = open(filename, 'w')
         w = csv.writer(f, delimiter='\t')
         for row in tabdata:
             w.writerow(row)
     elif format == 'xls':
->>>>>>> e397b6bd17c73d76b21404ce3422496b8da262db
         workbook = xlwt.Workbook()
         ws = __xls_table_to_sheet(tabdata, workbook.add_sheet("0"))
 #        print(dir(ws))
@@ -55,7 +51,6 @@ def __store_table(tabdata, filename, format="csv"):
         workbook = openpyxl.Workbook()
         ws = __xlsx_table_to_sheet(tabdata, workbook.create_sheet("0"))
         workbook.save(filename)
-
 
 def __xls_table_to_sheet(table, ws):
     rn = 0
