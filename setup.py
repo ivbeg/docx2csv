@@ -26,10 +26,11 @@ setup(
     include_package_data=True,
     install_requires=[
         'click',
-        'python-docx',
-        'xlwt',
-        'openpyxl'
+		'docx>=0.2.4',
+		'openpyxl>=3.0.5',
+		'xlwt>=1.3.0'
     ],
+    python_requires='>=3.8',
     scripts=['bin/docx2csv'],
     license="BSD",
     zip_safe=False,
@@ -40,9 +41,6 @@ setup(
         'License :: OSI Approved :: BSD License',
         'Natural Language :: English',
         'Programming Language :: Python :: 3',
-        'Programming Language :: Python :: 3.3',
-        'Programming Language :: Python :: 3.4',
-        'Programming Language :: Python :: 3.5',
         'Programming Language :: Python :: 3.6',
         'Programming Language :: Python :: Implementation :: CPython',
         'Programming Language :: Python :: Implementation :: PyPy'
