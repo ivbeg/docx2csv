@@ -34,7 +34,4 @@ def extract(format, sizefilter, singlefile, filename, output):
     docx2csv.extract(filename, format, sizefilter, singlefile, output)
 
 
-#cli = click.CommandCollection(sources=[cli1])
-
-if __name__ == '__main__':
-    extract()
+cli = click.CommandCollection(sources=[cli1])

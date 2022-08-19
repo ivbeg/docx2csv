@@ -3,6 +3,10 @@
 History
 =======
 
+0.1.2 (2022-08-19)
+------------------
+* Moved command line to docx2csv/core.py and added __main__.py to make docx2csv module callable via python -m 
+
 0.1.1 (2022-01-30)
 ------------------
 * Fixed requirements.txt and setup.py requirements

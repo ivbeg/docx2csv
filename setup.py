@@ -31,7 +31,11 @@ setup(
 		'xlwt>=1.3.0'
     ],
     python_requires='>=3.8',
-    scripts=['bin/docx2csv'],
+    entry_points={
+        'console_scripts': [
+            'docx2csv = docx2csv.__main__:main',
+        ],
+    },
     license="BSD",
     zip_safe=False,
     keywords='docx converter tables',
