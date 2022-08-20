@@ -3,13 +3,15 @@
 import csv
 import xlwt
 import openpyxl
+import json
+import datetime
 
 from docx import Document
 from docx.table import _Cell
 from docx.oxml.simpletypes import ST_Merge
 
 
-def __extract_table(table):
+def __extract_table(table, strip_space=False):
     """Extracts table data from table object"""
     results = []
     n = 0
@@ -18,12 +20,15 @@ def __extract_table(table):
         for tc in tr.tc_lst:
             for grid_span_idx in range(tc.grid_span):
                 if tc.vMerge == ST_Merge.CONTINUE:
-                    r.append(results[n - 1][len(r) - 1])#.decode('utf8'))
+                    value = results[n - 1][len(r) - 1]
                 elif grid_span_idx > 0:
-                    r.append(r[-1])#.decode('utf8'))
+                    value = r[-1]
                 else:
                     cell = _Cell(tc, table)
-                    r.append(cell.text.replace("\n", " "))#.decode('utf8'))
+                    value = cell.text.replace("\n", " ")
+                if strip_space:
+                    value = value.strip()
+                r.append(value)
         results.append(r)
 #        print(r)
         n += 1
@@ -71,21 +76,30 @@ def __xlsx_table_to_sheet(table, ws):
     return ws
 
 
-def extract_tables(filename):
+def extract_tables(filename, strip_space=True):
     """Extracts table from .DOCX files"""
     tables = []
     document = Document(filename)
     n = 0
     for table in document.tables:
         n += 1
-        tdata = __extract_table(table)
-        tables.append(tdata)
+        info = {}
+        info['id'] = n
+        info['num_cols'] = len(table.columns)
+        info['num_rows'] = len(table.rows)
+        info['style'] = table.style.name
+        tdata = __extract_table(table, strip_space=strip_space)
+        info['data'] = tdata
+        tables.append(info)
     return tables
 
 
-def extract(filename, format="csv", sizefilter=0, singlefile=False, output=None):
+
+
+
+def extract(filename, format="csv", sizefilter=0, singlefile=False, output=None, strip_space=True):
     """Extracts tables from csv files and saves them as csv, xls or xlsx files"""
-    tables = extract_tables(filename)
+    tables = extract_tables(filename, strip_space=strip_space)
     name = filename.rsplit(".", 1)[0]
     format = format.lower()
     n = 0
@@ -97,7 +111,7 @@ def extract(filename, format="csv", sizefilter=0, singlefile=False, output=None)
                 if lfilter >= len(t):
                     continue
                 n += 1
-                ws = __xls_table_to_sheet(t, workbook.add_sheet(str(n)))
+                ws = __xls_table_to_sheet(t['data'], workbook.add_sheet(str(n)))
             destname = output if output else name + ".%s" % (format)
             workbook.save(destname)
         elif format == "xlsx":
@@ -106,13 +120,38 @@ def extract(filename, format="csv", sizefilter=0, singlefile=False, output=None)
                 if lfilter >= len(t):
                     continue
                 n += 1
-                ws = __xlsx_table_to_sheet(t, workbook.create_sheet(str(n)))
+                ws = __xlsx_table_to_sheet(t['data'], workbook.create_sheet(str(n)))
             destname = output if output else name + ".%s" % (format)
             workbook.save(destname)
+        elif format == "json":
+            report = {'filename' : filename, 
+            'timestamp' : datetime.datetime.now().isoformat(), 'num_tables' : len(tables),
+            'tables' : tables}
+            destname = output if output else name + ".%s" % (format)
+            f = open(destname, 'w', encoding='utf8')
+            json.dump(report, f, ensure_ascii=False, indent=4)
+            f.close()
+
     else:
         for t in tables:
             if lfilter >= len(t):
                 continue
             n += 1
             destname = output if output else name + "_%d.%s" % (n, format)
-            __store_table(t, destname, format)
+            __store_table(t['data'], destname, format)
+
+
+def analyze(filename):
+    """Analyzes docx file"""
+    tableinfo = []
+    document = Document(filename)
+    n = 0    
+    for table in document.tables:
+        n += 1
+        info = {}
+        info['id'] = n
+        info['num_cols'] = len(table.columns)
+        info['num_rows'] = len(table.rows)
+        info['style'] = table.style.name
+        tableinfo.append(info)
+    return tableinfo

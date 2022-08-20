@@ -2,7 +2,7 @@
 Command line
 ============
 
-Usage: docx2csv [OPTIONS] FILENAME
+Usage: docx2csv extract [OPTIONS] FILENAME
 
   docx to csv convertor (http://github.com/ivbeg/docx2csv)
   Extracts tables from DOCX files as CSV or XLSX.

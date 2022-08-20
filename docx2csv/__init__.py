@@ -4,4 +4,5 @@ __author__ = "Ivan Begtin (ivan@begtin.tech)"
 __license__ = "BSD"
 
 
-from .converter import extract, extract_tables
+from .converter import extract, extract_tables, analyze
+
