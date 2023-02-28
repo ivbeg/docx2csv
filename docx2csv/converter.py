@@ -9,7 +9,7 @@ import datetime
 from docx import Document
 from docx.table import _Cell
 from docx.oxml.simpletypes import ST_Merge
-
+from docx.oxml.shared import OxmlElement
 
 def __extract_table(table, strip_space=False):
     """Extracts table data from table object"""
