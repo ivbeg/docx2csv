@@ -26,7 +26,7 @@ setup(
     include_package_data=True,
     install_requires=[
         'click',
-		'docx>=0.2.4',
+		'python-docx>=0.2.4',
 		'openpyxl>=3.0.5',
 		'xlwt>=1.3.0'
     ],
