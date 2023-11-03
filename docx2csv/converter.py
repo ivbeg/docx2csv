@@ -9,7 +9,7 @@ import datetime
 from docx import Document
 from docx.table import _Cell
 from docx.oxml.simpletypes import ST_Merge
-
+from docx.oxml.shared import OxmlElement
 
 def __extract_table(table, strip_space=False):
     """Extracts table data from table object"""
@@ -82,6 +82,9 @@ def extract_tables(filename, strip_space=True):
     document = Document(filename)
     n = 0
     for table in document.tables:
+        if not table._element.xpath('.//w:tblGrid'):
+            tblGrid = OxmlElement('w:tblGrid')
+            table._element.insert(0, tblGrid)
         n += 1
         info = {}
         info['id'] = n
@@ -147,6 +150,9 @@ def analyze(filename):
     document = Document(filename)
     n = 0    
     for table in document.tables:
+        if not table._element.xpath('.//w:tblGrid'):
+            tblGrid = OxmlElement('w:tblGrid')
+            table._element.insert(0, tblGrid)
         n += 1
         info = {}
         info['id'] = n
