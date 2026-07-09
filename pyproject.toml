@@ -6,7 +6,7 @@ build-backend = "setuptools.build_meta"
 name = "docx2csv"
 dynamic = ["version"]
 description = "Extracts tables from .docx files and saves them as csv or xlsx"
-readme = "README.rst"
+readme = "README.md"
 license = {text = "BSD-3-Clause"}
 authors = [
     {name = "Ivan Begtin", email = "ivan@begtin.tech"},

@@ -1,4 +1,4 @@
-.PHONY: clean-pyc clean-build docs clean
+.PHONY: clean-pyc clean-build clean-test help
 SHELL := /bin/bash
 
 help:
@@ -7,9 +7,8 @@ help:
 	@echo "clean-pyc - remove Python file artifacts"
 	@echo "clean-test - remove test and coverage artifacts"
 	@echo "lint - check style with flake8"
-	@echo "coverage - check code coverage quickly with the default Python"
-	@echo "docs - generate Sphinx HTML documentation, including API docs"
-	@echo "release - package and upload a release"
+	@echo "test - run tests with pytest"
+	@echo "coverage - check code coverage"
 	@echo "dist - package"
 
 clean: clean-build clean-pyc clean-test
@@ -33,25 +32,13 @@ clean-test:
 lint:
 	flake8 docx2csv tests --config=./flake8
 
+test:
+	pytest --cov=docx2csv --cov-report=term-missing
+
 coverage:
-	coverage run --source docx2csv setup.py test
-	coverage report -m
-	coverage html
+	pytest --cov=docx2csv --cov-report=html
 	python -m webbrowser htmlcov/index.html
 
-docs:
-	rm -f docs/docx2csv.rst
-	rm -f docs/modules.rst
-	sphinx-apidoc -o docs/ docx2csv
-	$(MAKE) -C docs clean
-	$(MAKE) -C docs html
-	python -m webbrowser docs/_build/html/index.html
-
-release: clean
-	python setup.py sdist upload
-	python setup.py bdist_wheel upload
-
 dist: clean
-	python setup.py sdist
-	python setup.py bdist_wheel
+	python -m build
 	ls -l dist
