@@ -7,7 +7,7 @@ Usage: docx2csv extract [OPTIONS] FILENAME
   docx to csv convertor (http://github.com/ivbeg/docx2csv)
   Extracts tables from DOCX files as CSV or XLSX.
 
-  Use command: "docx2csv convert <filename>" to run extraction. It will
+  Use command: "docx2csv extract <filename>" to run extraction. It will
   create files like filename_1.csv, filename_2.csv for each table found.
 
 Options:

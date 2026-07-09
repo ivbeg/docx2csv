@@ -24,7 +24,7 @@ If you are reporting a bug, please include:
 Fix Bugs
 ~~~~~~~~
 
-Look thrgough the GitHub issues for bugs. Anything taged with "bug"
+Look through the GitHub issues for bugs. Anything tagged with "bug"
 is open to whoever wants to implement it.
 
 Implement Features
@@ -60,6 +60,8 @@ Ready to contribute? Here's how to set up `docx2csv` for local development.
 
 1. Fork the `docx2csv` repo on GitHub.
 2. Clone your fork locally::
+
+    $ git clone https://github.com/your-username/docx2csv.git
 
 3. Install your local copy into a virtualenv. Assuming you have virtualenvwrapper installed, this is how you set up your fork for local development::
 

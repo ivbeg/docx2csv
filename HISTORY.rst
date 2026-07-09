@@ -3,13 +3,20 @@
 History
 =======
 
+0.1.3 (2026-07-09)
+------------------
+* Fixed TSV encoding, sizefilter logic, file handle leaks
+* Added input validation and error handling
+* Added test suite, migrated to GitHub Actions
+* Added pyproject.toml, deprecated xlwt dependency
+
 0.1.2 (2022-08-20)
 ------------------
 * Added command `analyze`, added extract to JSON file
 
 0.1.2 (2022-08-19)
 ------------------
-* Moved command line to docx2csv/core.py and added __main__.py to make docx2csv module callable via python -m 
+* Moved command line to docx2csv/core.py and added __main__.py to make docx2csv module callable via python -m
 
 0.1.1 (2022-01-30)
 ------------------
