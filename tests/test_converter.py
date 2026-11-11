@@ -115,6 +115,21 @@ class TestExtract:
         extract(sample_docx, format="xlsx", output=output)
         assert os.path.exists(output)
 
+    def test_extract_json_separate_files(self, sample_docx):
+        """Per-table JSON output must write one file per table."""
+        base = sample_docx.rsplit(".", 1)[0]
+        extract(sample_docx, format="json", singlefile=False)
+        for i, expected in (
+            (1, [["A", "B"], ["C", "D"]]),
+            (2, [["\u042f00", "\u042f01", "\u042f02"],
+                 ["\u042f10", "\u042f11", "\u042f12"],
+                 ["\u042f20", "\u042f21", "\u042f22"]]),
+            (3, [["single"]]),
+        ):
+            path = base + "_%d.json" % i
+            with open(path, "r", encoding="utf-8") as f:
+                assert json.load(f) == expected
+
     def test_sizefilter_excludes_small_tables(self, sample_docx, tmp_path):
         """SPEC-002: sizefilter=3 should exclude tables with < 3 rows."""
         base = sample_docx.rsplit(".", 1)[0]

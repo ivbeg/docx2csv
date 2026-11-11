@@ -110,6 +110,9 @@ def __store_table(tabdata: List[List[str]], filename: str, format: str = "csv") 
         workbook = openpyxl.Workbook()
         ws = __xlsx_table_to_sheet(tabdata, workbook.create_sheet("0"))
         workbook.save(filename)
+    elif format == "json":
+        with open(filename, 'w', encoding='utf8') as f:
+            json.dump(tabdata, f, ensure_ascii=False, indent=4)
 
 
 def __xls_table_to_sheet(table: List[List[str]], ws: Any) -> Any:
